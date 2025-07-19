@@ -1,13 +1,161 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+  :root {
+    --background: #222222;
+    --foreground: #fffaf7;
+    --card: #2a2a2a;
+    --card-hover: #585858e6;
+    --card-foreground: #ffffff;
+    --primary: #6366f1;
+    --primary-light: #aec5fb;
+    --primary-muted: #43aefc26;
+    --primary-foreground: #ffffff;
+    --secondary: #2a2a2a;
+    --secondary-foreground: #b77b10;
+    --muted: #8faef8;
+    --muted-foreground: #64748b;
+    --accent: #f1f5f9;
+    --accent-foreground: #0f172a;
+    --destructive: #ef4444;
+    --destructive-foreground: #f8fafc;
+    --border: #999;
+    --input: #181818;
+    --input-focus: #343844;
+    --ring: #020817;
+    --button: #2a2a2a;
+    --button-hover: #333333;
+    --radius: 0.5rem;
+    --info-text: #e8c468;
+    --sub-text: #999;
+    --text: #5c466e;
+  }
+
+  .dark {
+    --background: #020817;
+    --foreground: #f8fafc;
+    --card: #2a2a2a;
+    --card-foreground: #f8fafc;
+    --popover: #020817;
+    --popover-foreground: #f8fafc;
+    --primary: 38 84% 66%;
+    --primary-foreground: #0f172a;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: #f8fafc;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: #f8fafc;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: #f8fafc;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+@font-face {
+  font-family: 'GeistVF';
+  src: url('../public/GeistVF.woff') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@layer base {
+  * {
+    word-break: break-all;
+  }
+
+  body {
+    @apply text-foreground;
+    margin: 0;
+    font-family: -apple-system, 'GeistVF', 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: 1px;
+  }
+
+}
+
+.text-heading {
+  @apply font-capriola text-2xl font-bold
+}
+
+.text-title {
+  @apply text-xl;
+}
+
+.text-label {
+  @apply text-sm;
+}
+
+.text-normal {
+  @apply font-mulish text-[1rem]
+}
+
+.span {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  /* number of lines to show */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+
+html,
+body {
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+my-calss {
+  size: 50px;
+}
+
+/* Floating Style */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 4px 0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 20px;
+  min-height: 30px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+svg {
+  color: var(--primary-light);
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.lucide {
+  cursor: pointer;
 }
