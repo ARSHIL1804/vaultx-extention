@@ -63,7 +63,7 @@ export default function AccountSignMessage() {
     if (dappRequest) {
       PopupResponseHelper.handleAccept(dappRequest.id, {
         signedMessage,
-        address: activeAccount.newWallet.address,
+        address: activeAccount.newWallet.evmAddress,
       });
     }
   };
@@ -77,10 +77,6 @@ export default function AccountSignMessage() {
     }
   };
 
-  useEffect(() => {
-    if (!dappRequest) return;
-    signMessage();
-  }, [dappRequest]);
   return (
     <div className="flex flex-col h-full gap-4">
       <Header title={translate("Sign Message")} />
@@ -139,6 +135,7 @@ export default function AccountSignMessage() {
           <Button
             className={`bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white p-4 rounded-full flex-1 cursor-pointer`}
             disabled={isLoading}
+            onClick={signMessage}
           >
             {!isLoading ? translate("Confirm") : <Spinner size="small" />}
           </Button>

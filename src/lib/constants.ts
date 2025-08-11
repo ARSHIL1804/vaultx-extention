@@ -1,6 +1,8 @@
 import { GasPrice } from "@cosmjs/stargate"
 import { VaulXRequestError } from "./types";
-import { NETWORK } from "./enums";
+import { ERROR_CODE, NETWORK } from "./enums";
+
+
 export const APP_CONTANTS =
 {
   USER_WALLETS_KEY: process.env.NEXT_PUBLIC_KEY_PREFIX + "-user-wallets",
@@ -126,42 +128,45 @@ export const VaultXErrorTypes = Object.freeze({
   INTERNAL_ERROR: new VaulXRequestError(
     "Server Error",
     "Internal Error",
-    1001
+    ERROR_CODE.E001
   ),
   NO_ACCOUNTS: new VaulXRequestError(
     "No Accounts",
     "No accounts found",
-    1002,
+    ERROR_CODE.E002
   ),
   TIME_OUT: new VaulXRequestError(
     "Time out",
     "The prompt timed out without a response. This could be because the user did not respond or because a new request was opened.",
-    1003,
+    ERROR_CODE.E003
   ),
   UNAUTHORIZED: new VaulXRequestError(
     "Unauthorized",
     "The requested method and/or account has not been authorized by the user.",
-    1004,
+    ERROR_CODE.E004
+    ,
   ),
   UNSUPPORTED: new VaulXRequestError(
     "Unsupported Request",
     "The provider does not support the requested method.",
-    1005
+    ERROR_CODE.E005
+
   ),
   USER_REJECTION: new VaulXRequestError(
     "User Rejected",
     "The user rejected the request",
-    1006
+    ERROR_CODE.E006
+
   ),
   TRANSACTION_ERROR: new VaulXRequestError(
     "Transaction Error",
-    "There is an error in initiating transaction",
-    1007
+    "There is an unknown error in initiating transaction",
+    ERROR_CODE.E007
   ),
-  INSUFFICIENT_BALANCE: new VaulXRequestError(  
+  INSUFFICIENT_BALANCE: new VaulXRequestError(
     "Insufficient Balance",
     "Insufficient balance in currenct selected account",
-    1008
+    ERROR_CODE.E008
   ),
-  
+
 });

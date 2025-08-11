@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useAccounts } from "@/providers/AccountProvider";
 import { getDataFromBrowserStorage } from "@/lib/browser";
 import { API_CONSTANTS, APP_CONTANTS, VaultXErrorTypes } from "@/lib/constants";
-import { Coin, Token } from "@/lib/types";
+import { Coin, Token, VaulXRequestError } from "@/lib/types";
 import {
   formatTokenBalanceToDisplay,
   getEVMAddress,
@@ -237,11 +237,11 @@ export default function AccountConfirmTransfer() {
     }
   };
 
-  const handleTransactionRejection = () => {
+  const handleTransactionRejection = (error = VaultXErrorTypes.USER_REJECTION) => {
     if (dappRequest) {
       PopupResponseHelper.handleReject(
         dappRequest.id,
-        VaultXErrorTypes.USER_REJECTION
+        error
       );
     }
   };
@@ -255,6 +255,7 @@ export default function AccountConfirmTransfer() {
     });
 
     if (!res) {
+      handleTransactionRejection();
       return;
     }
     setIsLoading(true);
@@ -305,7 +306,7 @@ export default function AccountConfirmTransfer() {
     } catch (error) {
       showPopup(error);
       setTimeout(() => {
-        handleTransactionRejection();
+        handleTransactionRejection(error instanceof VaulXRequestError  ? error : VaultXErrorTypes.TRANSACTION_ERROR);
       }, 3000);
     }
     setIsLoading(false);

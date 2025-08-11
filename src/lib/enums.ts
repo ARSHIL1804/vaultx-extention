@@ -46,3 +46,14 @@ export enum REQUEST_STATUS {
     Rejected = "rejected",
     Timeout = "timeout"
 }
+
+export enum ERROR_CODE {
+  E001 = 'WalletInternalError',
+  E002 = 'WalletNoAccountsError',
+  E003 = 'WalletTimeoutError',
+  E004 = 'WalletUnauthorizedError',
+  E005 = 'WalletUnsupportedRequestError',
+  E006 = 'WalletUserRejectionError',
+  E007 = 'WalletTransferTokenError',
+  E008 = 'WalletInsufficientFundsError',
+}

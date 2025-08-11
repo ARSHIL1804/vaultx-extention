@@ -70,14 +70,13 @@ export class RequestHandler {
     async handleRequest(request: any, sender: SiteMetaData) {
         try {
             const result = await this.executeWalletOperation(request, sender);
-            return this.buildResponse(request.id, result);
+            return this.buildResponse(request.message.requestId, result.data);
         } catch (error) {
             console.error(error);
             if (error instanceof VaulXRequestError) {
-                return this.buildResponse(request.id, error);
+                return this.buildResponse(request.message.requestId, error);
             }
-            console.error(error);
-            return this.buildResponse(request.id, VaultXErrorTypes.INTERNAL_ERROR);
+            return this.buildResponse(request.message.requestId, VaultXErrorTypes.INTERNAL_ERROR);
         }
     }
 

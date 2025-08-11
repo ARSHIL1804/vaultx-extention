@@ -47,11 +47,11 @@ export default function BrowserStorageProvider({
 }: {
   children: React.ReactNode;
 }) {
-  // const localStorageHelper = new StorageHelper(chrome.storage.local);
-  // const sessionStorageHelper = new StorageHelper(chrome.storage.session);
+  const localStorageHelper = new StorageHelper(chrome.storage.local);
+  const sessionStorageHelper = new StorageHelper(chrome.storage.session);
 
-  const localStorageHelper = new LocalStorageHelper();
-  const sessionStorageHelper = new LocalStorageHelper();
+  // const localStorageHelper = new LocalStorageHelper();
+  // const sessionStorageHelper = new LocalStorageHelper();
 
   const [localStorageState, setLocalStorageState] = useState<PersistentStorage>(
     {}

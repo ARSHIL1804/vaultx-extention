@@ -42,6 +42,7 @@ function sendRequest(method: string, params = null) {
             const message = event.data
             if (message.type === 'vaultx-dapp-response') {
                 const { response, error } = message;
+                console.log(response);
                 if (error) {
                     reject(error);
                 }

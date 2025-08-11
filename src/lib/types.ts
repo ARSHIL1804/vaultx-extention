@@ -89,9 +89,10 @@ export interface DappRequest {
 
 export class VaulXRequestError extends Error { 
     title: string;
-    errordCode: number;
+    message: string;
+    errordCode: string;
     
-    constructor(title:string, message:string, errorCode:number){
+    constructor(title:string, message:string, errorCode:string){
         super(message);
         this.title = title;
         this.message = message;

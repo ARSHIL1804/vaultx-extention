@@ -20,6 +20,13 @@ export class WalletConnectionHelper {
     }
 
 
+    private omitInternalIdStatus<T extends { id: string, status: string }>(
+        obj: T,
+    ): Omit<T, "id" | "status"> {
+        const { id: _, status: __, ...rest } = obj;
+        return rest;
+    }
+
     validateAndThrow(response: any) {
         if (response.status === 'timeout') {
             throw VaultXErrorTypes.TIME_OUT;
@@ -43,13 +50,18 @@ export class WalletConnectionHelper {
             await this.domainPermissionHelper.addDomain(activeAccount.newWallet.address, this.dappInfo.domain);
         }
         return {
-            ...activeAccount
+            data: {
+                ...activeAccount
+            }
         }
     }
 
     async disconnect() {
         const activeAccount = await this.ensureAccountConnected();
         await this.domainPermissionHelper.removeDomain(this.dappInfo.domain, activeAccount.newWallet.address);
+        return {
+            data: true
+        };
     }
 
     async isConnected() {
@@ -75,7 +87,7 @@ export class WalletConnectionHelper {
     async getNetwork() {
         const { walletSettings } = await this.persistentStorageHelper.get(["walletSettings"]) as any;
         const { network } = walletSettings;
-        return network;
+        return {data : network} ;
     }
 
     async ensureAccountConnected() {
@@ -88,7 +100,7 @@ export class WalletConnectionHelper {
     }
 
     async getAccount() {
-        return await this.ensureAccountConnected();
+        return { data: await this.ensureAccountConnected() };
     }
 
     async transferToken(data: any) {
@@ -99,7 +111,7 @@ export class WalletConnectionHelper {
             "requestData": data
         });
         this.validateAndThrow(response);
-        return response;
+        return this.omitInternalIdStatus(response as any);;
     }
 
     async callContract(data: any) {
@@ -110,7 +122,7 @@ export class WalletConnectionHelper {
             "requestData": data
         });
         this.validateAndThrow(response);
-        return response;
+        return this.omitInternalIdStatus(response as any);;
     }
 
     async signMessage(data: any) {
@@ -121,6 +133,6 @@ export class WalletConnectionHelper {
             "requestData": data
         });
         this.validateAndThrow(response);
-        return response;
+        return this.omitInternalIdStatus(response as any);;
     }
 }
