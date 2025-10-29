@@ -4,12 +4,15 @@ Wallet Extention Link: https://chromewebstore.google.com/detail/vaultx/jcmbmclik
 
 ## Functionalities:
 
-1)Create or Add Crossfi wallet
+1) Create or Add Crossfi wallet
 
-Transfer Coin
-Receive Coin via QR 
-Swap Coin
-Add multiple accounts and switch
+2) Transfer Coin
+
+3) Receive Coin via QR 
+
+4) Swap Coin
+
+5) Add multiple accounts and switch
 
 
 ## Security
